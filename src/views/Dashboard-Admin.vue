@@ -76,7 +76,7 @@
             <v-tab class="white--text">Nieuwe Status</v-tab>
             <v-tab class="white--text">Nieuwe voertuig</v-tab>
             <v-tab class="white--text">Manage Users</v-tab>
-            <v-tab class="white--text">Vehicle Count</v-tab>
+            <!-- <v-tab class="white--text">Vehicle Count</v-tab> -->
 
             <v-tab-item>
               <v-select
@@ -240,9 +240,9 @@
               <ManageUsers />
             </v-tab-item>
 
-            <v-tab-item>
+            <!-- <v-tab-item>
               <VehicleCount />
-            </v-tab-item>
+            </v-tab-item> -->
           </v-tabs>
         </v-card>
       </v-col>
@@ -264,7 +264,7 @@ import AlertBox from "../components/DialogBox/Alertbox.vue";
 import ManageStatus from "../components/DashboardAdmin/ManageStatus.vue";
 import ManageTypes from "../components/DashboardAdmin/ManageTypes.vue";
 import ManageUsers from "./AddNewUser.vue";
-import VehicleCount from "../components/DashboardAdmin/VehicleCount.vue";
+// import VehicleCount from "../components/DashboardAdmin/VehicleCount.vue";
 
 export default {
   components: {
@@ -273,7 +273,7 @@ export default {
     ManageStatus,
     ManageTypes,
     ManageUsers,
-    VehicleCount,
+    // VehicleCount,
   },
 
   created() {

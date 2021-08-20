@@ -7,7 +7,7 @@
             <v-toolbar flat color="#0036d9">
               <v-icon class="white--text">mdi-account</v-icon>
               <v-toolbar-title class="font-weight-light ml-3 white--text">
-                Choose Your Vehicle -- Kies Je Voertuig</v-toolbar-title
+                Kies Je Voertuig</v-toolbar-title
               >
               <v-spacer></v-spacer>
             </v-toolbar>
@@ -65,9 +65,9 @@
                 :disabled="!isEditing"
                 color="error"
                 x-large
-                @click="cancel"
+                @click="handleLogout"
               >
-                Uitdient
+                UITLOGGEN
               </v-btn>
               <v-spacer></v-spacer>
               <v-btn
@@ -119,6 +119,7 @@
                   </v-row>
                  
                 </div> </div>
+                  <Comfirm :show="show" @results="handleLogout" />
               </v-container>
             </v-card-text>
           </v-card>
@@ -130,10 +131,12 @@
 <script>
 import firebase from "firebase";
 import AlertBox from "../DialogBox/Alertbox.vue";
+import Comfirm from "../../../src/components/DialogBox/ConfirmLogout.vue";
 
 export default {
   components: {
     AlertBox,
+    Comfirm,
   },
 
   created() {
@@ -293,6 +296,8 @@ export default {
         })
         .catch((err) => console.log(err));
     }, 3000);
+
+
   },
 
   data() {
@@ -320,6 +325,39 @@ export default {
   },
 
   methods: {
+
+
+
+    handleLogout(res) {
+
+      this.show = true;
+      if(res === true){
+          firebase
+            .firestore()
+            .collection("access_list")
+            .doc(`${this.fname}_${this.lname}`)
+            .delete()
+            .then(() => {
+              console.log("deleted!");
+            })
+            .then(() => {
+              console.log("Change count called");
+              setTimeout(() => {
+                console.log(this.type);
+                this.changeCount(this.type, "dec");
+              }, 1000);
+            })
+            .then(() => {
+              this.$router.push("/");
+            });
+      }
+      if(res === false){
+          this.show = false;
+      }
+    },
+
+
+
     update_name_list() {
       this.names = [];
       firebase
@@ -655,6 +693,9 @@ export default {
 
     },
     cancel() {
+
+
+
       firebase
         .firestore()
         .collection("access_list")
@@ -674,6 +715,9 @@ export default {
           //redirect to user login
           this.$router.push("/");
         });
+
+
+
     },
 
     changeCount(vehicle, type) {

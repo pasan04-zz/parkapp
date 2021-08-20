@@ -5,17 +5,10 @@
     </div>
 
 
-    <!-- <v-row justify="center" align="center" class="mt-4">
-        <v-col cols="24" md="5"> -->
+
        
-            <AccessVehicle />
+      <AccessVehicle />
         
-        <!-- </v-col>
-           
-           
-
-    </v-row> -->
-
 
 
     <v-row justify="center" align="center">
@@ -74,7 +67,6 @@
 import Vue from "vue";
 import firebase from "firebase";
 import AccessVehicle from "../components/DashboardEmp/AccessVehicle.vue";
-// import VehicleCountDash from "../components/DashboardEmp/VehicleCountDash.vue";
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css'; 
 
@@ -83,7 +75,6 @@ Vue.use(VueSweetalert2);
 export default {
   components: {
     AccessVehicle,
-    // VehicleCountDash
   },
 
     updated() {
@@ -186,11 +177,33 @@ export default {
           });
         });
 
+      setInterval(() => {
+          this.allMessages = [];
+          firebase
+            .firestore()
+            .collection("message")
+            .get()
+            .then((snap) => {
+                snap.forEach(message => {
+                  if(new Date().toLocaleDateString() == message.data().date){
+                      this.allMessages.push({ messageToEmployee: message.data().messageToEmployee, username: message.data().username, date: message.data().date, id: message.id});
+                  }
+                });
+            })
+            .catch((err) => console.log(err));
+    }, 3000);
+
       if (this.$store.state.currentUser.username != "") {
         this.loading = false;
       } else {
         this.$router.push("/");
       }
     },
+
+
+
+
+
+
 };
 </script>

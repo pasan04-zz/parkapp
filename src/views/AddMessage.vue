@@ -62,7 +62,7 @@
                         <template v-slot:default="{}">
                           <v-list-item-content>
                             <v-list-item-title
-                              v-text="`${item.messageToEmployee} --->  ${item.date}`"
+                              v-text="`${item.messageToEmployee}`"
                             ></v-list-item-title>
                           </v-list-item-content>
 
@@ -100,6 +100,8 @@ export default {
   },
 
   created() {
+    
+
     firebase
       .firestore()
       .collection('message')
@@ -109,6 +111,13 @@ export default {
           this.allMessages.push({ messageToEmployee: message.data().messageToEmployee, username: message.data().username, date: message.data().date, id: message.id});
         });
       });
+
+      console.log("All messages"+ this.allMessages.length)
+
+      for(var i=0; i<100;i++){
+        console.log("pasan kamburugamuwa");
+      }
+
   },
 
   data() {
