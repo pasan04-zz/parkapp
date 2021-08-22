@@ -76,7 +76,6 @@
             <v-tab class="white--text">Nieuwe Status</v-tab>
             <v-tab class="white--text">Nieuwe voertuig</v-tab>
             <v-tab class="white--text">Manage Users</v-tab>
-            <!-- <v-tab class="white--text">Vehicle Count</v-tab> -->
 
             <v-tab-item>
               <v-select

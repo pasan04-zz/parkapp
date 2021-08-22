@@ -112,11 +112,7 @@ export default {
         });
       });
 
-      console.log("All messages"+ this.allMessages.length)
 
-      for(var i=0; i<100;i++){
-        console.log("pasan kamburugamuwa");
-      }
 
   },
 

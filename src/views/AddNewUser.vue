@@ -310,7 +310,7 @@ export default {
           })
           .then(() => {
             this.show = true;
-            this.message = 'Password reseted!';
+            this.message = 'Your password has been changed successfully!';
           });
       } else {
         this.show = true;

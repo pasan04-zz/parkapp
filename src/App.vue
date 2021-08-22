@@ -157,7 +157,6 @@ export default {
   updated() {
     if (this.$store.state.currentUser.logout_time != null) {
       if (Date.now() > this.$store.state.currentUser.logout_time) {
-        console.log("logout");
         this.$store.state.currentUser.username = "";
         this.$store.state.currentUser.login_time = null;
         this.$store.state.currentUser.logout_time = null;
@@ -204,7 +203,6 @@ export default {
     opcologin() {
       this.url = "/opcologin";
 
-      console.log(this.url);
       if (
         this.$store.state.currentAdmin.username != "" ||
         this.$store.state.currentUser.username != "" ||
@@ -232,7 +230,6 @@ export default {
     },
 
     changeCount() {
-      console.log("Clicked");
       firebase
         .firestore()
         .collection("access_list")
@@ -243,7 +240,6 @@ export default {
         )
         .get()
         .then((doc) => {
-          console.log(doc.data());
           const type = doc.data().type;
 
           firebase
@@ -255,7 +251,6 @@ export default {
               this.count = Number(doc.data().vehicle_count);
             })
             .then(() => {
-              console.log(this.count );
               firebase
                 .firestore()
                 .collection("vehicle_type")

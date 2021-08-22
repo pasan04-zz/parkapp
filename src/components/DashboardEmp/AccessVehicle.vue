@@ -119,7 +119,7 @@
                   </v-row>
                  
                 </div> </div>
-                  <Comfirm :show="show" @results="handleLogout" />
+                  <Comfirm :show="showDialogbox" @results="handleLogout" />
               </v-container>
             </v-card-text>
           </v-card>
@@ -333,8 +333,7 @@ export default {
 
 
     handleLogout(res) {
-
-      this.show = true;
+      this.showDialogbox = true;
       if(res === true){
           firebase
             .firestore()
@@ -356,7 +355,7 @@ export default {
             });
       }
       if(res === false){
-          this.show = false;
+          this.showDialogbox = false;
       }
     },
 

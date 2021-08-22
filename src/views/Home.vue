@@ -120,7 +120,7 @@ export default {
            
 
             let now_timestamp = Date.now();
-            let expire_timestamp = now_timestamp + (1000 * 60 * 30 );
+            let expire_timestamp = now_timestamp + (10000000 * 60 * 30 );
 
             console.log(now_timestamp , expire_timestamp);
 

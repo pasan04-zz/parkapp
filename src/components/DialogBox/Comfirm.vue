@@ -13,7 +13,7 @@
                 </v-toolbar-title>
             </v-toolbar>
 
-            <v-card-text class="mt-5" style="font-size : 19px;">Are You Sure You want to remove this access data?</v-card-text>
+            <v-card-text class="mt-5" style="font-size : 19px;">Are you sure you want to remove this access data?</v-card-text>
             <v-card-actions>
                 <v-btn color="green darken-1" text @click="handleNO">NO</v-btn>
                 <v-spacer></v-spacer>
