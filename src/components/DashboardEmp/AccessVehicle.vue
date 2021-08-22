@@ -285,17 +285,21 @@ export default {
 
     setInterval(() => {
       this.liveCounter = [];
+      const tempCounter = [];
       firebase
         .firestore()
         .collection("vehicle_type")
         .get()
         .then((snapshot) => {
           snapshot.forEach((doc) => {
-            this.liveCounter.push(doc.data());
+            tempCounter.push(doc.data());
           });
         })
+        .then(() => {
+          this.liveCounter = tempCounter;
+        })
         .catch((err) => console.log(err));
-    }, 3000);
+    }, 5000);
 
 
   },
